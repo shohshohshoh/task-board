@@ -1,43 +1,64 @@
-# Task Board
+# CLAUDE.md
 
-## Project Overview
+## プロジェクト概要
 
-This is a task board project managed under `c:\Users\shoh0\Claude\task-board`.
+タスクボードアプリケーション。
+管理ディレクトリ: `c:\Users\shoh0\Claude\task-board`
 
-## Git Rules
+## Git 運用ルール
 
-### Commit and Push on Every Change
+**コードを変更するたびに、必ずコミットして GitHub にプッシュすること。**
 
-After every code change, always commit and push to GitHub:
+### 手順
 
-```powershell
-git add <changed-files>
-git commit -m "<message>"
-git push origin <branch>
+1. 変更をステージング (特定ファイルを名前で指定する):
+   ```
+   git add <変更したファイル>
+   ```
+
+2. コミット (変更内容を明確に記述):
+   ```
+   git commit -m "変更の概要"
+   ```
+
+3. GitHub へプッシュ:
+   ```
+   git push origin <ブランチ名>
+   ```
+
+### コミットメッセージ規則
+
+- `feat:` 新機能追加
+- `fix:` バグ修正
+- `refactor:` リファクタリング
+- `docs:` ドキュメント変更
+- `test:` テスト追加・修正
+- `chore:` ビルド・設定変更
+
+末尾に必ず以下を付与:
 ```
-
-- Stage specific files by name — never use `git add -A` or `git add .` unless intentional.
-- Write concise commit messages focused on *why*, not *what*.
-- Push immediately after every commit. Do not batch multiple commits before pushing.
-- Never force-push to `main`/`master`.
-- Always confirm with the user before running destructive git operations (reset --hard, force push, branch delete).
-
-### Branch Strategy
-
-- `main` — stable, always deployable
-- Feature work goes on a branch; merge via PR when complete
-
-### Commit Message Format
-
-```
-<type>: <short summary>
-
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 
-Types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`
+### ブランチ戦略
 
-## Development Notes
+- `main` — 安定版、常にデプロイ可能な状態を維持
+- 機能開発はブランチを切り、PR 経由でマージ
+
+### 注意事項
+
+- `.env` などの機密ファイルはコミットしない (`git add .` は使わない)
+- 直接 `main` ブランチへのプッシュは避け、PR を使う
+- `--force` プッシュは原則禁止 (`main`/`master` への force push は厳禁)
+- 破壊的な git 操作 (reset --hard 等) は必ずユーザーに確認を取ること
+
+## コーディング規則
+
+- コメントは原則書かない (コード自体が自己説明的であること)
+- 不要な抽象化・将来のための設計はしない
+- セキュリティ上の脆弱性 (XSS, SQLインジェクション等) を避ける
+
+## 開発環境
 
 - Platform: Windows 11, PowerShell
-- Use PowerShell syntax in all shell commands (`$env:VAR`, backtick for line continuation)
+- PowerShell 構文を使用 (`$env:VAR`、行継続はバッククォート)

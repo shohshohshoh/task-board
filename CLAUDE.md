@@ -52,6 +52,34 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 - `--force` プッシュは原則禁止 (`main`/`master` への force push は厳禁)
 - 破壊的な git 操作 (reset --hard 等) は必ずユーザーに確認を取ること
 
+## デプロイ先
+
+- **本番 URL**: https://shohshohshoh.github.io/task-board/
+- **デプロイ方法**: `main` へ push すると GitHub Actions が自動ビルド＆デプロイ
+- **ワークフロー**: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
+
+## 技術スタック
+
+| 用途 | ライブラリ／ツール |
+|---|---|
+| UI フレームワーク | React 18 |
+| ビルドツール | Vite 5 |
+| 言語 | JavaScript (JSX) |
+| スタイリング | CSS Modules (`.css` ファイル直書き) |
+| 状態管理 | React `useState` / `useEffect` (外部ライブラリなし) |
+| 永続化 | `localStorage` |
+| パッケージマネージャ | npm |
+
+## コンポーネント命名規約
+
+- **ファイル名**: PascalCase（例: `TaskItem.jsx`、`TaskList.jsx`）
+- **コンポーネント関数名**: ファイル名と同じ PascalCase
+- **CSS ファイル名**: コンポーネントと同名（例: `TaskItem.css`）
+- **props**: camelCase（例: `onToggle`、`onDelete`）
+- **イベントハンドラ**: `handle` プレフィックス（例: `handleKeyDown`、`handleSubmit`）
+- **コールバック props**: `on` プレフィックス（例: `onToggle`、`onDelete`）
+- **状態変数**: camelCase、意味が明確な名前（例: `tasks`、`input`）
+
 ## コーディング規則
 
 - コメントは原則書かない (コード自体が自己説明的であること)
